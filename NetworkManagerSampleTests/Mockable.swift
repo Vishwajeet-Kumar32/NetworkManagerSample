@@ -9,7 +9,7 @@ import Foundation
 
 protocol Mockable: AnyObject {
     var bundle: Bundle { get }
-    func loadJSON<T: Decodable>(filename: String, type: T.Type) -> T
+    func loadJSON<T: Decodable>(filename: String, type: T.Type) -> (data: Data, model: T)
 }
 
 extension Mockable {
@@ -17,7 +17,7 @@ extension Mockable {
         return Bundle(for: type(of: self))
     }
 
-    func loadJSON<T: Decodable>(filename: String, type: T.Type) -> T {
+    func loadJSON<T: Decodable>(filename: String, type: T.Type) -> (data: Data, model: T) {
         guard let path = bundle.url(forResource: filename, withExtension: "json") else {
             fatalError("Failed to load JSON")
         }
@@ -26,7 +26,7 @@ extension Mockable {
             let data = try Data(contentsOf: path)
             let decodedObject = try JSONDecoder().decode(type, from: data)
 
-            return decodedObject
+            return (data, decodedObject)
         } catch {
             fatalError("Failed to decode loaded JSON")
         }

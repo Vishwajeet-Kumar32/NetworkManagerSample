@@ -41,12 +41,12 @@ struct NetworkManagerSampleTests {
 
 final class UserServiceMock: Mockable, UserServiceable {
     func getUsers() async -> Result<NetworkManagerSample.Response<[NetworkManagerSample.User]>, NetworkManagerSample.CustomError> {
-        let model = loadJSON(filename: "users", type: [NetworkManagerSample.User].self)
-        return .success(Response(data: Data(), model: model))
+        let result = loadJSON(filename: "users", type: [NetworkManagerSample.User].self)
+        return .success(Response(data: result.data, model: result.model))
     }
     
     func getUserDetail(id: Int) async -> Result<NetworkManagerSample.Response<NetworkManagerSample.User>, NetworkManagerSample.CustomError> {
-        let model = loadJSON(filename: "user", type: NetworkManagerSample.User.self)
-        return .success(Response(data: Data(), model: model))
+        let result = loadJSON(filename: "user", type: NetworkManagerSample.User.self)
+        return .success(Response(data: result.data, model: result.model))
     }
 }
