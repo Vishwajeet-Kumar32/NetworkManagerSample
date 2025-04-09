@@ -1,0 +1,15 @@
+{
+  "originHash" : "3c7e6af856f4eeb0729a5baddb8817e184dea313e11bea043d636ed553938b79",
+  "pins" : [
+    {
+      "identity" : "vknetworkmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Vishwajeet-Kumar32/VKNetworkManager",
+      "state" : {
+        "revision" : "78175018311efa81a53360115e9ea1c56f0912e4",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}
